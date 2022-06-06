@@ -6,3 +6,9 @@
     background: url("../../images/header_logo.svg") no-repeat center;
     margin-right: 44px;
 }
+
+@media screen and (max-width: 800px) {
+    .logo {
+        margin-right: 0;
+    }
+  }

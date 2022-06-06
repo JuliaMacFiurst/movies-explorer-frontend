@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import './App.css'
+import './App.css';
 import Header from "../Header/Header"
 import Main from '../Main/Main'
 import Movies from '../Movies/Movies'
