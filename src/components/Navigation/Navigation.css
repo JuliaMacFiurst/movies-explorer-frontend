@@ -27,25 +27,6 @@
   font-weight: 500;
 }
 
-.nav-link__icon {
-  background: url(../../images/account.svg) no-repeat center;
-  width: 12px;
-  height: 14px;
-  margin-right: 7px;
-}
-
-.nav-link_type_account {
-  margin-right: 0;
-  margin-left: auto;
-  border: 2px solid #aaaaaa;
-  border-radius: 50px;
-  box-sizing: border-box;
-  font-size: 14px;
-  line-height: 1.14;
-  display: flex;
-  align-items: center;
-  padding: 8px 12px;
-}
 
 @media screen and (max-width: 800px) {
   .nav {

@@ -1,6 +1,8 @@
 import React from "react";
 
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
+import Account from "../Account/Account";
 
 import "./Navigation.css";
 
@@ -17,13 +19,7 @@ export default function Navigation() {
                 activeClassName="nav-link_type_active">
                     Сохраненные фильмы
             </NavLink>
-            <>
-            <Link to="/profile"
-                className="nav-link nav-link_type_account">
-                <div className="nav-link__icon"></div>
-                Аккаунт
-            </Link>
-            </>
+            <Account />
         </nav>
     );
-}
+};

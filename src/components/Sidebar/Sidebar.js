@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+import Account from "../Account/Account";
+
 import "./Sidebar.css";
 
 export default function Sidebar({ isOpened, onClose }) {
@@ -33,11 +35,7 @@ export default function Sidebar({ isOpened, onClose }) {
                         </NavLink>
                     </li>
                     <li className="sidebar-item__account">
-                        <NavLink to="/profile"
-                        className="sidebar-link__account">
-                            Аккаунт
-                            <div className="sidebar-link__icon"></div>
-                        </NavLink>
+                        <Account />
                     </li>
                 </ul>
             </nav>

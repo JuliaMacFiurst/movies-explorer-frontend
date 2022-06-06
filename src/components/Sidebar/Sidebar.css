@@ -20,9 +20,9 @@
 
 .sidebar_type_opened {
     width: 68%;
+    height: 100%;
     min-width: 320px;
     max-width: 520px;
-    height: 100vh;
     position: fixed;
     top: 0;
     right: 0;
@@ -36,7 +36,7 @@
 .sidebar-list {
     list-style: none;
     padding: 0;
-    margin: 159px 0 90px;
+    margin-top: 159px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -85,28 +85,10 @@
 .sidebar-item__account {
     margin-top: auto;
     margin-bottom: 90px;
-    border: 2px solid #aaaaaa;
-    border-radius: 50px;
-    box-sizing: border-box;
-    font-size: 14px;
-    line-height: 1.14;
-    display: flex;
-    align-items: center;
-    padding: 8px 12px;
 }
 
-.sidebar-link__account{
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.21;
-    color: #000;
-    transition: opacity 0.3s ease-out;
-}
-
-.sidebar-link__icon {
-  background: url(../../images/account.svg) no-repeat center;
-  width: 12px;
-  height: 14px;
-  margin-right: 7px;
-}
+@media screen and (max-width: 800px) {
+    .sidebar-item__account {
+        margin-bottom: 46px;
+    }
+  }
