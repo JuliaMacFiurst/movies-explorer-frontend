@@ -1,0 +1,112 @@
+.sidebar-wrapper {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    transition: background-color 0.3s;
+}
+
+.sidebar-wrapper_type_opened {
+    pointer-events: all;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.sidebar {
+    display: none;
+}
+
+.sidebar_type_opened {
+    width: 68%;
+    min-width: 320px;
+    max-width: 520px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    transition: right 0.3s;
+}
+
+.sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 159px 0 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-item {
+    margin-bottom: 28px;
+}
+
+.sidebar-link {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.21;
+    color: #000;
+    transition: opacity 0.3s ease-out;
+}
+
+.sidebar-link:hover {
+    opacity: 0.6;
+}
+
+.sidebar-link_type_active {
+    padding-bottom: 4px;
+    border-bottom: 2px solid #000;
+}
+
+.sidebar__close-button {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    position: fixed;
+    top: 23px;
+    right: 23px;
+    z-index: 1;
+    background: url('../../images/sidebar_close.svg');
+    border: none;
+    transition: opacity 0.3s ease-out;
+}
+
+.sidebar__close-button:hover {
+    opacity: 0.6;
+}
+
+.sidebar-item__account {
+    margin-top: auto;
+    margin-bottom: 90px;
+    border: 2px solid #aaaaaa;
+    border-radius: 50px;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 1.14;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+}
+
+.sidebar-link__account{
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.21;
+    color: #000;
+    transition: opacity 0.3s ease-out;
+}
+
+.sidebar-link__icon {
+  background: url(../../images/account.svg) no-repeat center;
+  width: 12px;
+  height: 14px;
+  margin-right: 7px;
+}

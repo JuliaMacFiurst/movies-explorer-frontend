@@ -1,4 +1,4 @@
-.page {
+.app {
     font-family: 'Inter', 'Arial', sans-serif;
     font-weight: 400;
     color: #000000;
@@ -8,4 +8,13 @@
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     text-decoration: none;
+    position:relative;
+    width: 100%;
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    text-decoration: none;
+    background-color: #ffff;
 }

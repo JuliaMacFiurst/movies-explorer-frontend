@@ -19,8 +19,7 @@ export default function Navigation() {
             </NavLink>
             <>
             <Link to="/profile"
-                className="nav-link nav-link_type_account"
-                activeClassName="nav-link_type_active">
+                className="nav-link nav-link_type_account">
                 <div className="nav-link__icon"></div>
                 Аккаунт
             </Link>
