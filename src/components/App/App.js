@@ -1,6 +1,7 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import './App.css'
+import Header from "../Header/Header"
 import Main from '../Main/Main'
 import Movies from '../Movies/Movies'
 import SavedMovies from '../SavedMovies/SavedMovies'
@@ -8,12 +9,12 @@ import Profile from '../Profile/Profile'
 import Register from '../Register/Register'
 import Login from '../Login/Login'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <div className="page">
+      <div className="app">
+        <Header />
         <Switch>
-          <Route path="/movies">
+          <Route exact path="/movies">
             <Movies />
           </Route>
           <Route path="/saved-movies">
@@ -28,7 +29,7 @@ function App() {
           <Route path="/signin">
             <Login />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Main />
           </Route>
           <Route path="/*">
@@ -36,8 +37,5 @@ function App() {
           </Route>
         </Switch>
       </div>
-    </div>
-  )
+  );
 }
-
-export default App
