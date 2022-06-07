@@ -19,6 +19,7 @@
   padding-top: 160px;
   padding-bottom: 150px;
   margin: 0;
+  letter-spacing: -0.04em;
 }
 
 @media screen and (max-width: 800px) {
