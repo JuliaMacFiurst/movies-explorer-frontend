@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import Logo from "../Logo/Logo";
 import { NavLink } from "react-router-dom";
 import Promo from "../Promo/Promo";
+import AboutProject from "../AboutProject/AboutProject";
 
 
 import "./Main.css";
@@ -37,6 +38,7 @@ export default function Main() {
 
         <main className="main">
         <Promo />
+        <AboutProject />
         </main>
        </div>
     );
