@@ -1,0 +1,23 @@
+.search {
+margin: 80px 0 45px 0;
+}
+
+.search__form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(238px, 1fr) 44px;
+    gap: 10px;
+    justify-content: center;
+    position: relative;
+}
+
+.search__input {
+ background: #FDFDFD;
+box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.08);
+border-radius: 9px;
+border: nonegit;
+}
+
+.search__button {
+
+}
