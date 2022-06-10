@@ -7,15 +7,18 @@ import Movies from '../Movies/Movies'
 import SavedMovies from '../SavedMovies/SavedMovies'
 import Profile from '../Profile/Profile'
 import Register from '../Register/Register'
-import Login from '../Login/Login'
+import Login from '../Login/Login';
+import { movies, savedMovies, user } from '../../fixtures';
+import { CurrentSavedCardsContext } from '../../context/CurrentSavedCardsContext';
 
 export default function App() {
   return (
+    <CurrentSavedCardsContext.Provider value={savedMovies || []}>
       <div className="app">
         <Header />
         <Switch>
           <Route exact path="/movies">
-            <Movies />
+            <Movies movies={movies} />
           </Route>
           <Route path="/saved-movies">
             <SavedMovies />
@@ -37,5 +40,6 @@ export default function App() {
           </Route>
         </Switch>
       </div>
+      </CurrentSavedCardsContext.Provider>
   );
 }

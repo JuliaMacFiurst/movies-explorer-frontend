@@ -2,8 +2,6 @@
   display: flex;
   justify-content: center;
   margin-top: 45px;
-  padding-bottom: 45px;
-  border-bottom: 1px solid #e8e8e8;
 }
 
 .checkbox {
@@ -53,7 +51,6 @@
   .checkbox-container {
     margin-top: 0;
     padding: 15px 20px 15px 0;
-    border-bottom: none;
     justify-self: flex-end;
     padding-left: 19px;
     border-left: 1px solid #cbcbcb;
