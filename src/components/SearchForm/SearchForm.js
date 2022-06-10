@@ -14,7 +14,8 @@ export default function SearchForm() {
           name="movie-title"
           placeholder="Фильм"
           required
-        ></input>
+        >
+        </input>
         <InputError formName="search" name="movie" type="input" message="" />
         <button className="search__button"></button>
       </form>
