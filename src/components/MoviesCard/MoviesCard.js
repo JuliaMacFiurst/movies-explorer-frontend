@@ -24,7 +24,7 @@ export default function MoviesCard(props) {
   return (
     <li className="movies-card">
       <a
-        className="movies-card__list"
+        className="movies-card__link"
         href={trailerLink}
         target="_blank"
         rel="noreferrer"
