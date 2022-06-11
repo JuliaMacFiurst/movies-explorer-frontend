@@ -13,4 +13,7 @@
   .movies-container {
     margin-top: 80px;
   }
+  .movies {
+    width: 95%;
+  }
 }

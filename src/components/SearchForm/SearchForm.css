@@ -50,6 +50,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 109px;
   }
 
   .search__form {
@@ -64,5 +65,11 @@
     line-height: 1.11;
     background: url(../../images/input_lupe.svg) left no-repeat;
     padding-left: 25px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .search {
+    margin-bottom: 69px;
   }
 }

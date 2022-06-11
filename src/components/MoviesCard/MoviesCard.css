@@ -11,6 +11,8 @@
 .movies-card__image {
   width: 100%;
   border-radius: 6px;
+  min-height: 190px;
+  object-fit: cover;
 }
 
 .moviea-card__container {
@@ -61,4 +63,16 @@
 
 .movies-card__button_type_remove {
   background: url("../../images/delete_card.svg") center no-repeat;
+}
+
+@media screen and (min-width: 700px) {
+  .movies-card__title {
+    font-size: 13px;
+    line-height: 1.23;
+  }
+
+  .movies-card__duration {
+    font-size: 11px;
+    line-height: 1.18;
+  }
 }
