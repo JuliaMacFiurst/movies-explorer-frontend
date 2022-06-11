@@ -1,6 +1,6 @@
 .footer {
   width: 95%;
-  margin: 70px 0 12px 0;
+  margin: 79px 0 12px 0;
 }
 
 .footer__title {
@@ -61,7 +61,7 @@
 
 @media screen and (min-width: 700px) {
   .footer {
-    margin: 79px 0 20px 0;
+    margin-bottom: 20px;
   }
 
   .footer__title {

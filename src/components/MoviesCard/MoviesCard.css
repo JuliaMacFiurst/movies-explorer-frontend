@@ -63,6 +63,11 @@
 
 .movies-card__button_type_remove {
   background: url("../../images/delete_card.svg") center no-repeat;
+  opacity: 0;
+}
+
+.movies-card__button_type_remove:hover {
+    opacity: 1;
 }
 
 @media screen and (min-width: 700px) {
