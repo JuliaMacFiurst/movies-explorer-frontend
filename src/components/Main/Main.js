@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 import Logo from "../Logo/Logo";
 import { NavLink } from "react-router-dom";
 import Promo from "../Promo/Promo";
@@ -46,6 +47,7 @@ export default function Main() {
         <Techs />
         <AboutMe />
       </main>
+      <Footer />
     </div>
   );
 }

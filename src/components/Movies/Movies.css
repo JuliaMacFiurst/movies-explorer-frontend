@@ -1,12 +1,8 @@
-.movies-container {
+.movies {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-}
-
-.movies {
-  width: 90%;
 }
 
 @media screen and (min-width: 700px) {
@@ -14,6 +10,6 @@
     margin-top: 80px;
   }
   .movies {
-    width: 95%;
+    
   }
 }

@@ -1,3 +1,7 @@
+.search{
+  width: 95%;
+}
+
 .search__form {
   margin: 80px 0 45px 0;
   display: grid;
