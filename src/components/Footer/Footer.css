@@ -1,6 +1,6 @@
 .footer {
-  width: 95%;
-  margin: 79px 0 12px 0;
+  margin: 79px 10px 12px;
+  align-self: center;
 }
 
 .footer__title {
@@ -61,7 +61,7 @@
 
 @media screen and (min-width: 700px) {
   .footer {
-    margin-bottom: 20px;
+    margin: 0 30px 20px;
   }
 
   .footer__title {
@@ -98,5 +98,11 @@
   .footer__link {
     font-size: 13px;
     line-height: 1.23;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .footer {
+    margin: 0 70px 20px;
   }
 }

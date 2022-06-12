@@ -8,7 +8,6 @@ import Techs from "../Techs/Techs";
 import AboutMe from "../AboutMe/AboutMe";
 
 import "./Main.css";
-import Footer from "../Footer/Footer";
 
 export default function Main() {
   const isAuthorized = false;
@@ -46,7 +45,6 @@ export default function Main() {
         <AboutProject />
         <Techs />
         <AboutMe />
-        <Footer />
       </main>
     </div>
   );

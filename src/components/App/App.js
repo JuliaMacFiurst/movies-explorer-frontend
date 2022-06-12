@@ -8,6 +8,7 @@ import SavedMovies from '../SavedMovies/SavedMovies'
 import Profile from '../Profile/Profile'
 import Register from '../Register/Register'
 import Login from '../Login/Login';
+import Footer from '../Footer/Footer';
 import { movies, savedMovies, user } from '../../fixtures';
 import { CurrentSavedCardsContext } from '../../context/CurrentSavedCardsContext';
 
@@ -39,6 +40,7 @@ export default function App() {
             <Redirect to="/" />
           </Route>
         </Switch>
+        <Footer />
       </div>
       </CurrentSavedCardsContext.Provider>
   );

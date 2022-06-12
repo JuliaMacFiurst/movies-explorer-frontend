@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "../Footer/Footer";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import More from "../More/More";
@@ -15,7 +14,6 @@ export default function Movies({ movies }) {
                 <MoviesCardList movies={movies} />
                 <More isHidden={true} />
             </main>
-            <Footer />
 </div>
    )
 }
