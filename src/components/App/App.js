@@ -11,9 +11,11 @@ import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
 import { movies, savedMovies, user } from '../../fixtures';
 import { CurrentSavedCardsContext } from '../../context/CurrentSavedCardsContext';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 export default function App() {
   return (
+    <CurrentUserContext.Provider value={user || {}}>
     <CurrentSavedCardsContext.Provider value={savedMovies || []}>
       <div className="app">
         <Header />
@@ -43,5 +45,6 @@ export default function App() {
         <Footer />
       </div>
       </CurrentSavedCardsContext.Provider>
+      </CurrentUserContext.Provider>
   );
 }
