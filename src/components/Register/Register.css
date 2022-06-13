@@ -28,6 +28,10 @@
   opacity: 0.6;
 }
 
+.register__input-field:last-of-type {
+    margin-bottom: 0;
+}
+
 @media screen and (min-width: 700px) {
   .register {
     display: flex;
