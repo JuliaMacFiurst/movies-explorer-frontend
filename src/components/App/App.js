@@ -10,6 +10,7 @@ import Login from '../Login/Login';
 import { movies, savedMovies, user } from '../../fixtures';
 import { CurrentSavedCardsContext } from '../../context/CurrentSavedCardsContext';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
+import NotFound from '../NotFound/NotFound';
 
 export default function App() {
   return (
@@ -36,7 +37,7 @@ export default function App() {
             <Main />
           </Route>
           <Route path="/*">
-            <Redirect to="/" />
+            <NotFound />
           </Route>
         </Switch>
       </div>

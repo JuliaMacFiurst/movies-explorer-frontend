@@ -23,7 +23,7 @@ export default function Register() {
         <InputField
           type="email"
           formName="register"
-          name="e-mail"
+          name="email"
           title="E-mail"
         />
         <InputField
