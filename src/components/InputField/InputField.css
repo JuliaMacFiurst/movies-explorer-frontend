@@ -1,38 +1,38 @@
 .input-field {
-    margin: 0;
-    padding: 0;
-    border: none;
-    display: flex;
-    flex-direction: column;
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .input-field__label {
-    margin: 0 0 5px;
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 1.21;
-    color: #A0A0A0;
+  margin: 0 0 5px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.21;
+  color: #a0a0a0;
 }
 
 .input-field__input {
-    background: none;
-    border: none;
-    margin: 0;
-    padding: 0 0 10px;
-    border-bottom: #E8E8E8 1px solid;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.21;
-    color: #000000;
-    transition: all 0.3s ease-out;
+  background: none;
+  border: none;
+  margin-bottom: 24px;
+  padding: 0 0 10px;
+  border-bottom: #e8e8e8 1px solid;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.21;
+  color: #000000;
+  transition: all 0.3s ease-out;
 }
 
-.input-field__input:focus { 
-    outline: 0;
+.input-field__input:focus {
+  outline: 0;
   outline-offset: 0;
-  border-bottom: 1px solid #4285f4;
+  border-bottom: 1px solid #000000;
 }
 
 .input-field__input_invalid {
-    color: #ff1111;
+  color: #ff1111;
 }

@@ -1,21 +1,35 @@
 .auth {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .auth__title {
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 1.21;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.21;
+  margin: 50px 0 0 0;
 }
 
 .auth__form {
-    width: 100%;
+  width: 85%;
+  max-width: 396px;
+  margin: 80px 0 0 0;
 }
 
 @media screen and (min-width: 700px) {
     .auth {
-        align-items: flex-start;
+    align-items: flex-start;
+    align-self: center;
+    width: 396px;
     }
+
+.auth__title {
+    margin-top: 40px;
+}
+
+    .auth__form {
+        width: 100%;
+        margin-top: 40px;
+      }
 }
