@@ -17,6 +17,7 @@
   grid-template-columns: minmax(240px, 290px) 1fr;
   justify-content: center;
   padding: 14px 10px 14px 14px;
+  cursor: pointer;
 }
 
 .movies-card__title {
@@ -34,7 +35,7 @@
   color: #a0a0a0;
   align-self: flex-start;
   margin: 0;
-  padding-top: 14px;
+  padding-top: 10px;
 }
 
 .movies-card__button {
@@ -46,12 +47,12 @@
   transition: opacity 0.3s ease-out;
 }
 
-.movies-card__button_type_like {
-  background: url("../../images/dislike.svg") center no-repeat;
+.movies-card__button:hover {
+  opacity: 0.6;
 }
 
-.movies-card__button_type_like:hover {
-  opacity: 0.6;
+.movies-card__button_type_like {
+  background: url("../../images/dislike.svg") center no-repeat;
 }
 
 .movies-card__button_type_like_active {
@@ -64,7 +65,7 @@
 }
 
 .movies-card__button_type_remove:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 @media screen and (min-width: 700px) {

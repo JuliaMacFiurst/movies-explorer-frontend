@@ -1,15 +1,19 @@
 .saved-movies {
-  margin: 0 10px 166px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin: 0 10px 166px 10px; */
+  width: 100%;
 }
 
 @media screen and (min-width: 700px) {
     .saved-movies {
-        margin: 70px 30px 166px 30px;
+        margin: 80px 0 166px 0;
       }
 }
 
 @media screen and (min-width: 1200px) {
   .saved-movies {
-    margin: 80px 70px 247px 70px;
+    margin: 70px 0 247px 0;
   }
 }

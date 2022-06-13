@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer";
 
 export default function SavedMovies() {
   const savedMovies = useContext(CurrentSavedCardsContext);
+  
   return (
     <>
       <Header />

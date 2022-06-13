@@ -29,7 +29,7 @@
 }
 
 .register__input-field:last-of-type {
-    margin-bottom: 0;
+    margin-bottom: 240px;
 }
 
 @media screen and (min-width: 700px) {
