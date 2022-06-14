@@ -63,6 +63,7 @@
 .profile__buttons-container {
   display: flex;
   flex-direction: column;
+  width: 396px;
 }
 
 .profile__button {
