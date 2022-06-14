@@ -16,6 +16,11 @@
   padding: 10px 17px;
   text-align: center;
   box-sizing: border-box;
+  transition: opacity 0.3s ease-out;
+}
+
+.navtab__link:hover {
+  opacity: 0.6;
 }
 
 @media (max-width: 650px) {
