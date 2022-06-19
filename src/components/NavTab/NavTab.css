@@ -1,0 +1,36 @@
+.navtab {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.navtab__link {
+  text-decoration: none;
+  color: #ffffff;
+  background: #e8e8e8;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  padding: 10px 17px;
+  text-align: center;
+  box-sizing: border-box;
+  transition: opacity 0.3s ease-out;
+}
+
+.navtab__link:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 650px) {
+    .navtab {
+      gap: 6px;
+      margin-bottom: 17px;
+    }
+    .navtab__link {
+      font-size: 10px;
+      padding: 5px 12px;
+      border-radius: 6px;
+    }
+  }

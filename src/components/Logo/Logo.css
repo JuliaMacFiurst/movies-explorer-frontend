@@ -1,0 +1,8 @@
+.logo {
+  display: block;
+  width: 100%;
+  max-width: 38px;
+  height: 38px;
+  background: url("../../images/header_logo.svg") no-repeat center;
+  margin: 0;
+}

@@ -1,0 +1,12 @@
+.movies {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+@media screen and (min-width: 700px) {
+  .movies-container {
+    margin-top: 80px;
+  }
+}
