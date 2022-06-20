@@ -1,4 +1,4 @@
-import { apiOptions } from '../constants';
+import { mainApiUrl } from '../constants';
 
 class MainApi {
     constructor(options) {
@@ -6,15 +6,18 @@ class MainApi {
       this._headers = options.headers;
     }
   
-    _sendRequest(path, reqOptions) {
-        return fetch(`${this._url}/${path}`, { ...reqOptions, credentials: 'include' })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json()
-                }
-        return Promise.reject(`Ошибка: ${res.status}`);
-        })
-  }
+    async _sendRequest(path, reqOptions) {
+        try {
+            const response = await fetch(`${this._url}/${path}`, { ...reqOptions, credentials: 'include' });
+            if (!response.ok) {
+                throw response;
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            throw error;
+        }
+    }
   
     checkToken() {
         return this._sendRequest(`users/me`, {
@@ -88,6 +91,6 @@ class MainApi {
     }
 }
 
-const mainApi = new MainApi(apiOptions);
+const mainApi = new MainApi(mainApiUrl);
 
 export default mainApi;

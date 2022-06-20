@@ -10,12 +10,11 @@ import AboutMe from "../AboutMe/AboutMe";
 
 import "./Main.css";
 
-export default function Main() {
-  const isAuthorized = false;
+export default function Main({ loggedIn }) {
 
   return (
     <div className="main__container">
-      {isAuthorized ? (
+      {loggedIn ? (
         <Header />
       ) : (
         <header className="main__auth-header">
