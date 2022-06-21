@@ -9,6 +9,7 @@ class MainApi {
     async _sendRequest(path, reqOptions) {
         try {
             const response = await fetch(`${this._url}/${path}`, { ...reqOptions, credentials: 'include' });
+            console.log(reqOptions)
             if (!response.ok) {
                 throw response;
             }

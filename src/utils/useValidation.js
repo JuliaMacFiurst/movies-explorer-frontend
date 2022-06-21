@@ -1,7 +1,33 @@
 import { useState, useCallback } from "react";
 import { validationMessages } from "./constants";
 
-export default function useValidation(
+// export function useValidation(inputs) {
+//     const [values, setValues] = useState(inputs);
+//     const [errors, setErrors] = useState({});
+//     const [isFormValid, setIsFormValid] = useState(false);
+
+//     const handleChange = (evt) => {
+//     const input = evt.target
+//     const { value } = input
+//     const { name } = input
+//     setValues({ ...values, [name]: value })
+//     setErrors({ ...errors, [name]: input.validationMessage })
+//     setIsFormValid(input.closest('form').checkValidity())
+//     }
+
+//     const resetFrom = useCallback(
+//         (newValues = {}, newErrors = {}, newIsValid = false) => {
+//           setValues(newValues)
+//           setErrors(newErrors)
+//           setIsFormValid(newIsValid)
+//         },
+//         [setValues, setErrors, setIsFormValid],
+//       )
+
+//       return { values, handleChange, resetFrom, errors, isFormValid }
+// }
+
+export function useValidation(
   initialState = {
     values: {},
     isFormValid: true,
@@ -13,6 +39,7 @@ export default function useValidation(
   const [isFormValid, setIsFormValid] = useState(initialState.isFormValid);
 
   const handleChange = (input) => {
+
     const name = input.name;
     const value = input.value;
     const minLength = input.minLength;
@@ -25,7 +52,7 @@ export default function useValidation(
         ...setErrorMessages[name],
       };
 
-      const [, getValidationMessages] = Object.entries(
+      const [, getValidationMessage] = Object.entries(
         updateErrorMessages
       ).find(([errorKey]) => {
         const isError = validityState[errorKey];
@@ -35,12 +62,12 @@ export default function useValidation(
         return false;
       });
 
-      errorMessage = getValidationMessages({ minLength });
+      errorMessage = getValidationMessage({ minLength });
     }
 
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: errorMessage });
-    setIsFormValid(input.closest("form").checkValidity());
+    setIsFormValid(input.closest('form').checkValidity());
   };
   const resetForm = useCallback(
     (newValues = {}, newErrors = {}, newIsFormValid = false) => {

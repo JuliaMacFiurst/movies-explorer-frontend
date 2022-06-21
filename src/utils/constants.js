@@ -17,7 +17,7 @@ export const validationMessages = {
   typeUncorrect: () => "Поле заполнено некорректно.",
 };
 
-export const passwordValidationMessages = {
+export const passwordValidationMessage = {
   patternUncorrect: () => 'Поле заполнено некорректно.',
 };
 
@@ -26,3 +26,7 @@ export const emailValidationMessages = {
   patternUncorrect: () => 'Поле должно содержать корректный адрес.',
   typeUncorrect: () => 'Поле должно содержать корректный адрес.',
 };
+
+export const successMessage = {
+  successEditProfile: 'Профиль успешно отредактирован.',
+}

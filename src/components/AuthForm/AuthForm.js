@@ -6,21 +6,23 @@ import InputError from "../InputError/InputError";
 import "./AuthForm.css";
 
 export default function AuthForm(props) {
-  const { name, title, buttonText } = props;
+  const { name, title, buttonText, onSubmit, isValid, error } = props;
 
   return (
     <div className="auth">
       <Logo />
       <h1 className="auth__title">{title}</h1>
-      <form className={`auth__form auth__form-${name}`} name={`auth-${name}`}>
+      <form 
+      className={`auth__form auth__form-${name}`} name={`auth-${name}`}
+      onSubmit={onSubmit}>
         {props.children}
         <InputError
-          isHidden={true}
+          isHidden={error.length === 0}
           name={`submit-${name}`}
           type="button"
-          message=""
+          message={error}
         />
-        <ButtonSubmit text={buttonText} />
+        <ButtonSubmit text={buttonText} disabled={!isValid || error} />
       </form>
     </div>
   );

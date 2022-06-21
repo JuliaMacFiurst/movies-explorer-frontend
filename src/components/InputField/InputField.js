@@ -3,7 +3,7 @@ import InputError from "../InputError/InputError";
 import "./InputField.css";
 
 export default function InputField(props) {
-  const { type, formName, name, title, minLength = 2, pattern, required, value, onChange, error, setResError } = props;
+  const { type, formName, name, title, minLength = 2, pattern, required, value, onChange, error, setResFail } = props;
 
   return (
     <fieldset className={`input-field ${formName}__input-field`}>
@@ -20,9 +20,9 @@ export default function InputField(props) {
         value={value}
         minLength={minLength}
         maxLength="30"
-        onChange={(event) => {
-        setResError('')
-        onChange(event.target)
+        onChange={(evt) => {
+          setResFail('');
+          onChange(evt.target);
         }}
 
       />

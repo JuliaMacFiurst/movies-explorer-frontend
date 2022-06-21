@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AuthForm from "../AuthForm/AuthForm";
 import InputField from "../InputField/InputField";
-import useValidation from "../../utils/useValidation";
-import { emailValidationMessages } from "../../utils/constants";
-import { passwordValidationMessages } from "../../utils/constants";
+import { useValidation } from "../../utils/useValidation";
+import { emailValidationMessages, passwordValidationMessage } from "../../utils/constants";
 
 import "./Login.css";
 
@@ -12,11 +11,11 @@ export default function Login({ onLogin }) {
 
   const [resFail, setResFail] = useState('');
 
-  const { values: { email, password }, errors, isFormValid, handleChange, resetForm } = useValidation(
+  const { values: { email, password }, handleChange, errors, isFormValid,  resetForm } = useValidation(
     undefined,
     {
       email: emailValidationMessages,
-      passwordValidationMessages
+      password: passwordValidationMessage
     }
   );
 
@@ -30,8 +29,8 @@ export default function Login({ onLogin }) {
       password
     });
 
-    if (result.hasOwnProperty("error")) {
-      setResFail(result.errors);
+    if (result.hasOwnProperty('error')) {
+      setResFail(result.error);
     }
   }
   return (
@@ -53,7 +52,7 @@ export default function Login({ onLogin }) {
           value={email || ''}
           onChange={handleChange}
           error={errors.email}
-          setResError={setResFail}
+          setResFail={setResFail}
           pattern="(?!(^[.-].*|[^@]*[.-]@|.*\.{2,}.*)|^.{254}.)([a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@)(?!-.*|.*-\.)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,15}"
           />
         <InputField
@@ -62,10 +61,10 @@ export default function Login({ onLogin }) {
           name="password"
           title="Пароль"
           required
-          value={password || ''}
+          value={password}
           onChange={handleChange}
           error={errors.password}
-          setResError={setResFail}
+          setResFail={setResFail}
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}"
         />
       </AuthForm>
