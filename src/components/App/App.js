@@ -32,7 +32,7 @@ export default function App() {
     let user;
 
     try {
-      user = await mainApi.checkToken();
+      user = mainApi.checkToken();
 
       if (!user) {
         throw new Error("Ошибка авторизации. Передан некорректный токен.");
@@ -100,9 +100,19 @@ export default function App() {
   }
 
   async function handleLogout() {
+    localStorage.removeItem("jwt");
+
     try {
+
       await mainApi.logout();
     } catch (err) {
+      if (err.status === 401) {
+        setCurrentUser(false);
+    setLoggedIn(null);
+    Navigate("/");
+    localStorage.clear();
+      }
+      console.log(err);
       return console.log("Ошибка сервера. Повторите попытку позже");
     }
 

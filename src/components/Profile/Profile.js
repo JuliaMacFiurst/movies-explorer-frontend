@@ -140,6 +140,7 @@ const {values: { name, email }, handleChange, errors, isFormValid, resetForm } =
                 </button>
                 <button
                   className="profile__button profile__button_type_logout"
+                  onClick={onLogout}
                   type="reset"
                 >
                   Выйти из аккаунта

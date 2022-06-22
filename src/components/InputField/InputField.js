@@ -15,9 +15,9 @@ export default function InputField(props) {
         type={type}
         id={`${formName}-${name}`}
         name={name}
-        pattern={pattern}
-        required={required}
-        value={value}
+        // pattern={pattern}
+        // required={required}
+        // value={value}
         minLength={minLength}
         maxLength="30"
         onChange={(evt) => {
