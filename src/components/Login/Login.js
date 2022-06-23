@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AuthForm from "../AuthForm/AuthForm";
 import InputField from "../InputField/InputField";
-import { useValidation } from "../../utils/useValidation";
+import { useValidation } from "../../utils/handleValidation";
 import { emailValidationMessages, passwordValidationMessage } from "../../utils/constants";
 
 import "./Login.css";
@@ -65,7 +65,7 @@ export default function Login({ onLogin }) {
           onChange={handleChange}
           error={errors.password}
           setResFail={setResFail}
-          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,30}"
         />
       </AuthForm>
       <div className="login__link-question">

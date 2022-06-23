@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import InputField from "../InputField/InputField";
 import AuthForm from "../AuthForm/AuthForm";
-import { useValidation } from "../../utils/useValidation";
+import { useValidation } from "../../utils/handleValidation";
 import {
   emailValidationMessages,
   passwordValidationMessage,

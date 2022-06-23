@@ -6,7 +6,7 @@ import Header from "../Header/Header";
 import "./Profile.css";
 
 import ButtonSubmit from "../ButtonSubmit/ButtonSubmit";
-import { useValidation } from "../../utils/useValidation";
+import { useValidation } from "../../utils/handleValidation";
 import { emailValidationMessages, successMessage } from "../../utils/constants";
 
 

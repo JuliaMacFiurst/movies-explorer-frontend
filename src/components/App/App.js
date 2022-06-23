@@ -7,8 +7,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import Main from "../Main/Main";
-import Movies from "../Movies/Movies";
-import SavedMovies from "../SavedMovies/SavedMovies";
+import MoviesPages from "../MoviesPages/MoviesPages";
 import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
@@ -32,7 +31,7 @@ export default function App() {
     let user;
 
     try {
-      user = mainApi.checkToken();
+      user = await mainApi.checkToken();
 
       if (!user) {
         throw new Error("Ошибка авторизации. Передан некорректный токен.");
@@ -112,7 +111,7 @@ export default function App() {
     Navigate("/");
     localStorage.clear();
       }
-      console.log(err);
+      
       return console.log("Ошибка сервера. Повторите попытку позже");
     }
 
@@ -165,8 +164,8 @@ export default function App() {
               :
               <Login onLogin={handleLogin} />} />
             <Route element={<ProtectedRoute loggedIn={loggedIn} />} >
-              <Route path="/movies" element={<Movies />} />
-              <Route path="/saved-movies" element={<SavedMovies />} />
+              <Route path="/movies" element={<MoviesPages />} />
+              <Route path="/saved-movies" element={<MoviesPages />} />
               <Route path="/profile" element={<Profile onLogout={handleLogout} onEditProfile={handleEditProfile} />} />
             </Route>
             <Route path="*" element={<NotFound />} />

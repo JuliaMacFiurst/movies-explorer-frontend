@@ -8,7 +8,6 @@ class MainApi {
     async _sendRequest(path, reqOptions) {
         try {
             const response = await fetch(`${this._url}/${path}`, { ...reqOptions, credentials: 'include' });
-            console.log(reqOptions)
             if (!response.ok) {
                 throw response;
             }
@@ -18,12 +17,9 @@ class MainApi {
             throw error;
         }
     }
-
-    // checkToken() {
-    //     return localStorage.getItem('jwt')
-    // }
   
     checkToken() {
+        console.log(`читаем токен ${localStorage.getItem("jwt")}`)
         return this._sendRequest(`users/me`, {
             method: 'GET',
             headers: {
@@ -36,6 +32,9 @@ class MainApi {
     register({ name, email, password }) {
         return this._sendRequest(`signup`, {
             method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+              },
             body: JSON.stringify({
                 name,
                 email,
@@ -49,18 +48,18 @@ class MainApi {
             method: 'POST',
             headers: {
                     "Content-Type": "application/json",
-                    "Accept": "application/json",
                 },
                 body: JSON.stringify({
                     email,
                     password,
                 })
-
         })
         .then((data) => {
+            console.log(data);
             if (data.token) {
                       localStorage.setItem('jwt', data.token)
                       return data.token
+                      
             }
         })
     }
@@ -78,12 +77,11 @@ class MainApi {
         })
     }
 
-    updateUserInfo({ name, email }) {
+    editUserInfo({ name, email }) {
         return this._sendRequest(`users/me`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json",
                 "Authorization" : `Bearer ${localStorage.getItem("jwt")}`,
             },
             body: JSON.stringify({
@@ -93,12 +91,12 @@ class MainApi {
         })
     }
 
+
     getSavedMovies() {
         return this._sendRequest(`movies`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json",
                 "Authorization" : `Bearer ${localStorage.getItem("jwt")}`,
             },
         })
@@ -120,7 +118,6 @@ class MainApi {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json",
                 "Authorization" : `Bearer ${localStorage.getItem("jwt")}`,
             },
         })
