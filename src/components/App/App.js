@@ -27,6 +27,8 @@ export default function App() {
 
   const [registerResError, setRegisterResError] = useState('');
   const [loginResError, setLoginResError] = useState('');
+  const [profileEditResError, setProfileEditResError] = useState('');
+  const [isSuccessSubmit, setIsSuccessSubmit] = useState(false);
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -89,8 +91,6 @@ export default function App() {
       isLoggedIn = await mainApi.login(userData);
       checkUserAccess();
     } catch (err) {
-      let message;
-
       if (err.status === 401) {
         setLoginResError("Неправильный логин или пароль.");
       } else {
@@ -126,25 +126,26 @@ export default function App() {
   }
 
   async function handleEditProfile(userInfo) {
+    setProfileEditResError('');
+    setIsSuccessSubmit(false);
     let updatedUserInfo;
 
     try {
-      updatedUserInfo = await mainApi.updatedUserInfo(userInfo);
+      updatedUserInfo = await mainApi.editUserInfo(userInfo);
     } catch (err) {
-      let message;
-
       if (err.status === 409) {
-        message = "Пользователь с таким email уже существует.";
+        setProfileEditResError("Пользователь с таким email уже существует.");
       } else if (err.status === 500) {
-        message = "Ошибка сервера. Повторите попытку позже";
+        setProfileEditResError("Ошибка сервера. Повторите попытку позже");
       } else {
-        message = "При обновлении профиля произошла ошибка.";
+        setProfileEditResError("При обновлении профиля произошла ошибка.");
       }
 
-      return { err: message };
+      return (err.message);
     }
 
     setCurrentUser(updatedUserInfo);
+    setIsSuccessSubmit(true);
     return updatedUserInfo;
   }
 
@@ -170,7 +171,12 @@ export default function App() {
             <Route element={<ProtectedRoute loggedIn={loggedIn} />} >
               <Route path="/movies" element={<MoviesPages />} />
               <Route path="/saved-movies" element={<MoviesPages />} />
-              <Route path="/profile" element={<Profile onLogout={handleLogout} onEditProfile={handleEditProfile} />} />
+              <Route path="/profile" element={<Profile 
+              onLogout={handleLogout} 
+              onEditProfile={handleEditProfile} 
+              profileEditResError={profileEditResError}
+              isSuccessSubmit={isSuccessSubmit}
+               />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

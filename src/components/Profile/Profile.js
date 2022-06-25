@@ -1,4 +1,4 @@
-import React, { useState,  useContext } from "react";
+import React, { useState,  useContext, useRef, useEffect } from "react";
 
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 import InputError from "../InputError/InputError";
@@ -7,39 +7,46 @@ import "./Profile.css";
 
 import ButtonSubmit from "../ButtonSubmit/ButtonSubmit";
 import { useValidation } from "../../utils/handleValidation";
-import { emailValidationMessages, successMessage } from "../../utils/constants";
 
-
-
-export default function Profile({ onEditProfile, onLogout }) {
+export default function Profile({ onEditProfile, onLogout, profileEditResError, isSuccessSubmit }) {
   const [isChanged, setIsChanged] = useState(false);
+  const [isDisabled, setisDisabled] = useState(false)
   const user = useContext(CurrentUserContext);
   const [resConfirm, setResConfirm] = useState('');
 
-const {values: { name, email }, handleChange, errors, isFormValid, resetForm } = useValidation({
-  values: {
-    name: user.name,
-    email: user.email
-}
-},
-{ email: emailValidationMessages, }
-);
+  const newName = useRef('');
+  const newEmail = useRef('');
 
- async function onSubmit(evt) {
-  evt.preventDefault();
-  resetForm({ name, email }, {}, false);
-
-  const result = await onEditProfile({
-    name,
-    email,
+const {
+   errors,
+    isValid,
+    handleChange,
+  } = useValidation({
+    name: newName.current.value,
+    email: newEmail.current.value,
   });
-  if (result.hasOwnProperty('error')) {
-    setResConfirm(result.error);
+
+useEffect(() => {
+  if (newName.current.value === user.name && newEmail.current.value === user.email) {
+    setIsChanged(false);
   } else {
-    setResConfirm(successMessage.successEditProfile);
+    setIsChanged(true);
   }
-  setIsChanged(result.hasOwnProperty('error'))
- };
+}, [newName.current.value, newEmail.current.value, user.name, user.email])
+
+ const handleSubmit = (event) => {
+  event.preventDefault();
+  setisDisabled(true);
+  if (isValid) {
+    const name = newName.current.value;
+    const email = newEmail.current.value;
+    onEditProfile({ name, email });
+console.log({name, email});
+    event.target.reset();
+    setisDisabled(false);
+  }
+  setisDisabled(false);
+ }
 
   return (
     <>
@@ -48,23 +55,32 @@ const {values: { name, email }, handleChange, errors, isFormValid, resetForm } =
         <h1 className="profile__greeting">Привет, {user.name}!</h1>
         <form 
           className="profile__form"
-          onSubmit={onSubmit}>
+          onSubmit={handleSubmit}
+          name="profile-edit"
+          noValidate>
             <div className="profile__form-container">
           <fieldset className="profile__fieldset">
             <label className="profile__label" htmlFor="profile-name">
               Имя
             </label>
             <input
-              className="profile__input"
+            
+              className={
+                errors.profileName ? 'profile__input profile__input_type_error' : 'profile__input'
+              }
+              placeholder="Ваше имя"
               type="text"
               id="profile-name"
               name="profile-name"
               minLength="2"
               maxLength="30"
-              disabled={!isChanged}
               required
-              value={name ||''}
+              error={errors.name}
+              values={newName.current.value}
+              ref={newName}
               onChange={handleChange}
+              disabled={isDisabled}
+              defaultValue={user.name}
             />
             <InputError 
               isHidden={!errors.name} 
@@ -78,21 +94,23 @@ const {values: { name, email }, handleChange, errors, isFormValid, resetForm } =
               E-mail
             </label>
             <input
-              className="profile__input"
+              className={
+                errors.profileEmail ? 'profile__input profile__input_type_error' : 'profile__input'
+              }
               type="email"
+              placeholder="Ваш e-mail"
               id="profile-email"
               name="profile-email"
               minLength="2"
               maxLength="30"
               required
-              pattern="(?!(^[.-].*|[^@]*[.-]@|.*\.{2,}.*)|^.{254}.)([a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@)(?!-.*|.*-\.)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,15}"
-              disabled={!isChanged}
-              value={email || ''}
-              onChange={(evt) => {
-                setResConfirm('');
-                handleChange(evt.target);
-              }
-            }
+              pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+              disabled={isDisabled}
+              values={newEmail.current.value}
+              onChange={handleChange}
+              ref={newEmail}
+              defaultValue={user.email}
+              error={errors.email}
             />
             <InputError 
             isHidden={!errors.email} 
@@ -112,7 +130,8 @@ const {values: { name, email }, handleChange, errors, isFormValid, resetForm } =
                 />
                 <ButtonSubmit 
                   text="Сохранить"
-                  disabled={!isFormValid || (name === user.name && email === user.email)}
+                  type="submit"
+                  disabled={!isValid || !isChanged}
                    />
               </>
               : 
@@ -123,6 +142,7 @@ const {values: { name, email }, handleChange, errors, isFormValid, resetForm } =
                   type="button"
                   message={resConfirm}
                 />
+                <div className="profile__button-container">
                 <button
                   className="profile__button profile__button_type_submit"
                   type="button"
@@ -141,6 +161,7 @@ const {values: { name, email }, handleChange, errors, isFormValid, resetForm } =
                 >
                   Выйти из аккаунта
                 </button>
+                </div>
               </>
             }
           </div>
