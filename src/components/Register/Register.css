@@ -50,6 +50,7 @@
   .register__link {
     font-size: 14px;
     line-height: 1.21;
+    padding-left: 2px;
   }
 }
 

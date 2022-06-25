@@ -1,31 +1,4 @@
 import { useState, useCallback } from "react";
-import { validationMessages } from "./constants";
-
-// export function useValidation(inputs) {
-//     const [values, setValues] = useState(inputs);
-//     const [errors, setErrors] = useState({});
-//     const [isFormValid, setIsFormValid] = useState(false);
-
-//     const handleChange = (evt) => {
-//     const input = evt.target
-//     const { value } = input
-//     const { name } = input
-//     setValues({ ...values, [name]: value })
-//     setErrors({ ...errors, [name]: input.validationMessage })
-//     setIsFormValid(input.closest('form').checkValidity())
-//     }
-
-//     const resetFrom = useCallback(
-//         (newValues = {}, newErrors = {}, newIsValid = false) => {
-//           setValues(newValues)
-//           setErrors(newErrors)
-//           setIsFormValid(newIsValid)
-//         },
-//         [setValues, setErrors, setIsFormValid],
-//       )
-
-//       return { values, handleChange, resetFrom, errors, isFormValid }
-// }
 
 export function useValidation(
   initialState = {
@@ -36,46 +9,32 @@ export function useValidation(
 ) {
   const [values, setValues] = useState(initialState.values);
   const [errors, setErrors] = useState({});
-  const [isFormValid, setIsFormValid] = useState(initialState.isFormValid);
+  const [isValid, setIsValid] = useState(initialState.isFormValid);
 
-  const handleChange = (input) => {
+  const handleChange = (evt) => {
+    const target = evt.target;
+    const name = target.name;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
 
-    const name = input.name;
-    const value = input.value;
-    const minLength = input.minLength;
-    const validityState = input.validity;
-    let errorMessage = undefined;
+    setValues({
+      ...values,
+      [name]: value
+    });
 
-    if (!validityState.valid) {
-      const updateErrorMessages = {
-        ...validationMessages,
-        ...setErrorMessages[name],
-      };
+    setErrors({
+      ...errors, [name]: target.validationMessage
+    });
 
-      const [, getValidationMessage] = Object.entries(
-        updateErrorMessages
-      ).find(([errorKey]) => {
-        const isError = validityState[errorKey];
-        if (isError) {
-          return true;
-        }
-        return false;
-      });
-
-      errorMessage = getValidationMessage({ minLength });
+     setIsValid(target.closest('form').checkValidity());
     }
 
-    setValues({ ...values, [name]: value });
-    setErrors({ ...errors, [name]: errorMessage });
-    setIsFormValid(input.closest('form').checkValidity());
-  };
   const resetForm = useCallback(
-    (newValues = {}, newErrors = {}, newIsFormValid = false) => {
+    (newValues = {}, newErrors = {}, newIsValid = false) => {
       setValues(newValues);
       setErrors(newErrors);
-      setIsFormValid(newIsFormValid);
+      setIsValid(newIsValid);
     },
-    [setValues, setErrors, setIsFormValid]
+    [setValues, setErrors, setIsValid]
   );
 
   return {
@@ -84,8 +43,7 @@ export function useValidation(
     handleChange,
     errors,
     setErrors,
-    isFormValid,
-    setIsFormValid,
+    isValid,
     resetForm,
   };
 }

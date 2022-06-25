@@ -17,12 +17,12 @@ export default function AuthForm(props) {
       onSubmit={onSubmit}>
         {props.children}
         <InputError
-          isHidden={error.length === 0}
-          name={`submit-${name}`}
           type="button"
+          name={`submit-${name}`}
+          isHidden={error.length === 0}
           message={error}
         />
-        <ButtonSubmit text={buttonText} disabled={!isValid || error} />
+        <ButtonSubmit text={buttonText} disabled={!isValid} />
       </form>
     </div>
   );

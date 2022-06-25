@@ -4,10 +4,6 @@ import { Link } from "react-router-dom";
 import InputField from "../InputField/InputField";
 import AuthForm from "../AuthForm/AuthForm";
 import { useValidation } from "../../utils/handleValidation";
-import {
-  emailValidationMessages,
-  passwordValidationMessage,
-} from "../../utils/constants";
 
 import "./Register.css";
 
@@ -17,24 +13,20 @@ export default function Register({ onRegister }) {
   const {
     values: { name, email, password },
     errors,
-    isFormValid,
+    isValid,
     handleChange,
     resetForm,
-  } = useValidation(undefined, {
-    email: emailValidationMessages,
-    password: passwordValidationMessage,
-  }
-  );
+  } = useValidation();
 
-  async function handleSubmit(evt) {
-    evt.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     resetForm({ name, email, password }, {}, false);
 
     const result = await onRegister({
-      name,
-      email,
-      password,
+        name,
+        email,
+        password,
     });
 
     if (result.hasOwnProperty('error')) {
@@ -50,7 +42,7 @@ export default function Register({ onRegister }) {
         title="Добро пожаловать!"
         buttonText="Зарегистрироваться"
         onSubmit={handleSubmit}
-        isValid={isFormValid}
+        isValid={isValid}
         error={resFail}
       >
         <InputField 
@@ -61,7 +53,6 @@ export default function Register({ onRegister }) {
           required
           value={name || ''}
           error={errors.name}
-          setResFail={setResFail}
           onChange={handleChange}
         />
         <InputField
@@ -72,9 +63,8 @@ export default function Register({ onRegister }) {
           required
           value={email || ''}
           error={errors.email}
-          setResFail={setResFail}
           onChange={handleChange}
-          pattern="(?!(^[.-].*|[^@]*[.-]@|.*\.{2,}.*)|^.{254}.)([a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@)(?!-.*|.*-\.)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,15}"
+          pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
         />
         <InputField
           type="password"
@@ -84,15 +74,13 @@ export default function Register({ onRegister }) {
           required
           value={password || ''}
           error={errors.password}
-          setResFail={setResFail}
           onChange={handleChange}
-          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}"
         />
       </AuthForm>
       <div className="register__link-question">
         Уже зарегистрированы?
         <Link className="register__link" to="/signin">
-          Войти
+         Войти
         </Link>
       </div>
     </main>

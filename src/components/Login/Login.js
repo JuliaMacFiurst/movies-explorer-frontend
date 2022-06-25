@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import AuthForm from "../AuthForm/AuthForm";
 import InputField from "../InputField/InputField";
 import { useValidation } from "../../utils/handleValidation";
-import { emailValidationMessages, passwordValidationMessage } from "../../utils/constants";
 
 import "./Login.css";
 
@@ -11,26 +10,20 @@ export default function Login({ onLogin }) {
 
   const [resFail, setResFail] = useState('');
 
-  const { values: { email, password }, handleChange, errors, isFormValid,  resetForm } = useValidation(
-    undefined,
-    {
-      email: emailValidationMessages,
-      password: passwordValidationMessage
-    }
-  );
+  const { values , errors, isValid, handleChange, resetForm } = useValidation();
 
-  async function handleSubmit(evt) {
-    evt.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    resetForm({ email, password }, {}, false);
+    resetForm(values, {}, false);
 
-    const result = await onLogin({
-      email,
-      password
-    });
+    const result = await onLogin(values);
+
 
     if (result.hasOwnProperty('error')) {
       setResFail(result.error);
+    }  else {
+      resetForm({}, {}, true);
     }
   }
   return (
@@ -39,7 +32,7 @@ export default function Login({ onLogin }) {
       name="login" 
       title="Рады видеть!" 
       buttonText="Войти"
-      isValid={isFormValid}
+      isValid={isValid}
       error={resFail}
       onSubmit={handleSubmit}
       >
@@ -49,11 +42,10 @@ export default function Login({ onLogin }) {
           name="email" 
           title="E-mail"
           required
-          value={email || ''}
+          value={values.email || ''}
           onChange={handleChange}
           error={errors.email}
-          setResFail={setResFail}
-          pattern="(?!(^[.-].*|[^@]*[.-]@|.*\.{2,}.*)|^.{254}.)([a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@)(?!-.*|.*-\.)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,15}"
+          pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
           />
         <InputField
           type="password"
@@ -61,11 +53,9 @@ export default function Login({ onLogin }) {
           name="password"
           title="Пароль"
           required
-          value={password}
+          value={values.password || ''}
           onChange={handleChange}
           error={errors.password}
-          setResFail={setResFail}
-          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,30}"
         />
       </AuthForm>
       <div className="login__link-question">

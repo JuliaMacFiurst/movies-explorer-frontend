@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState,  useContext } from "react";
 
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 import InputError from "../InputError/InputError";
@@ -64,11 +64,7 @@ const {values: { name, email }, handleChange, errors, isFormValid, resetForm } =
               disabled={!isChanged}
               required
               value={name ||''}
-              onChange={(evt) => {
-                setResConfirm('');
-                handleChange(evt.target);
-              }
-            }
+              onChange={handleChange}
             />
             <InputError 
               isHidden={!errors.name} 
