@@ -4,6 +4,7 @@ import {
   Route,
   useLocation,
   useNavigate,
+  Navigate,
 } from "react-router-dom";
 import "./App.css";
 import Main from "../Main/Main";
@@ -24,7 +25,7 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState();
   const [currentUser, setCurrentUser] = useState(null);
 
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const { pathname } = useLocation();
 
   async function checkUserAccess() {
@@ -47,7 +48,7 @@ export default function App() {
     setLoggedIn(true);
 
     if (pathname === ("/signin" || "/signup")) {
-      Navigate("/movies");
+      navigate("/movies");
     }
   }
 
@@ -108,7 +109,7 @@ export default function App() {
       if (err.status === 401) {
         setCurrentUser(false);
     setLoggedIn(null);
-    Navigate("/");
+    navigate("/");
     localStorage.clear();
       }
       
