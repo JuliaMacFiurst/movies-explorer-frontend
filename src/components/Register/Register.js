@@ -7,8 +7,8 @@ import { useValidation } from "../../utils/handleValidation";
 
 import "./Register.css";
 
-export default function Register({ onRegister }) {
-  const [resFail, setResFail] = useState('');
+export default function Register({ onRegister, registerResError }) {
+  const [resFail, setResFail] = useState("");
 
   const {
     values: { name, email, password },
@@ -24,17 +24,17 @@ export default function Register({ onRegister }) {
     resetForm({ name, email, password }, {}, false);
 
     const result = await onRegister({
-        name,
-        email,
-        password,
+      name,
+      email,
+      password,
     });
 
-    if (result.hasOwnProperty('error')) {
+    if (result === !isValid) {
       setResFail(result.error);
     } else {
       resetForm({}, {}, true);
     }
-  }
+  };
   return (
     <main className="register">
       <AuthForm
@@ -45,13 +45,13 @@ export default function Register({ onRegister }) {
         isValid={isValid}
         error={resFail}
       >
-        <InputField 
-          type="text" 
-          formName="register" 
-          name="name" 
-          title="Имя" 
+        <InputField
+          type="text"
+          formName="register"
+          name="name"
+          title="Имя"
           required
-          value={name || ''}
+          value={name || ""}
           error={errors.name}
           onChange={handleChange}
         />
@@ -61,7 +61,7 @@ export default function Register({ onRegister }) {
           name="email"
           title="E-mail"
           required
-          value={email || ''}
+          value={email || ""}
           error={errors.email}
           onChange={handleChange}
           pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
@@ -72,15 +72,24 @@ export default function Register({ onRegister }) {
           name="password"
           title="Пароль"
           required
-          value={password || ''}
+          value={password || ""}
           error={errors.password}
           onChange={handleChange}
         />
       </AuthForm>
+      <span
+        className={
+          registerResError
+            ? "register__res-error register__res-error_type_active"
+            : "register__res-error"
+        }
+      >
+        {registerResError}
+      </span>
       <div className="register__link-question">
         Уже зарегистрированы?
         <Link className="register__link" to="/signin">
-         Войти
+          Войти
         </Link>
       </div>
     </main>

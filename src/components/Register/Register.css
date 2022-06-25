@@ -29,7 +29,23 @@
 }
 
 .register__input-field:last-of-type {
-    margin-bottom: 240px;
+  margin-bottom: 240px;
+}
+
+.register__res-error {
+  position: absolute;
+  top: 600px;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.register__res-error_type_active {
+  visibility: visible;
 }
 
 @media screen and (min-width: 700px) {
@@ -51,6 +67,10 @@
     font-size: 14px;
     line-height: 1.21;
     padding-left: 2px;
+  }
+
+  .register__res-error {
+    top: 700px;
   }
 }
 

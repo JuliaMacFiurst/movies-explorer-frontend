@@ -25,6 +25,9 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState();
   const [currentUser, setCurrentUser] = useState(null);
 
+  const [registerResError, setRegisterResError] = useState('');
+  const [loginResError, setLoginResError] = useState('');
+
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -57,21 +60,20 @@ export default function App() {
   }, []);
 
   async function handleRegistration(userData) {
+    setRegisterResError('');
     let user;
 
     try {
       user = await mainApi.register(userData);
     } catch (err) {
-      let message;
-
       if (err.status === 409) {
-        message = "Такой пользователь уже существует";
+       setRegisterResError("Такой пользователь уже существует");
       } else if (err.status === 500) {
-        message = "Ошибка сервера. Повторите попытку позже";
+        setRegisterResError("Ошибка сервера. Повторите попытку позже");
       } else {
-        message = "При регстрации полизошла ошибка";
+       setRegisterResError("При регистрации произошла ошибка");
       }
-      return { err: message };
+      return (err.message);
     }
 
     handleLogin(userData);
@@ -80,6 +82,7 @@ export default function App() {
   }
 
   async function handleLogin(userData) {
+    setLoginResError('');
     let isLoggedIn;
 
     try {
@@ -89,11 +92,11 @@ export default function App() {
       let message;
 
       if (err.status === 401) {
-        message = "Неправильный логин или пароль.";
+        setLoginResError("Неправильный логин или пароль.");
       } else {
-        message = "Ошибка сервера. Повторите попытку позже";
+        setLoginResError("Ошибка сервера. Повторите попытку позже");
       }
-      return { err: message };
+      return (err.message);
     }
 
     return { message: isLoggedIn.message };
@@ -158,12 +161,12 @@ export default function App() {
             <Route path="/signup" element={loggedIn ?
               <Navigate replace to="/movies" />
               :
-              <Register onRegister={handleRegistration} />}
+              <Register onRegister={handleRegistration} registerResError={registerResError} />}
             />
             <Route path="/signin" element={loggedIn ?
               <Navigate replace to="/movies" />
               :
-              <Login onLogin={handleLogin} />} />
+              <Login onLogin={handleLogin} loginResError={loginResError}/>} />
             <Route element={<ProtectedRoute loggedIn={loggedIn} />} >
               <Route path="/movies" element={<MoviesPages />} />
               <Route path="/saved-movies" element={<MoviesPages />} />
