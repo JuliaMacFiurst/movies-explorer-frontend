@@ -111,7 +111,6 @@ export default function MoviesPages() {
   useEffect(() => {
     if (pathname === "/movies") {
       localStorage.setItem("checkboxes", JSON.stringify(checkboxes));
-      console.log(checkboxes);
     }
   }, [checkboxes]);
 
@@ -197,7 +196,6 @@ export default function MoviesPages() {
     }
 
     if (!checkboxes["shortMovies-checkbox"]) {
-      console.log(selectedMovies);
       return selectedMovies;
     }
 

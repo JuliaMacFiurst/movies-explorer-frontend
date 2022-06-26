@@ -19,7 +19,7 @@ class MainApi {
     }
   
     checkToken() {
-        console.log(`читаем токен ${localStorage.getItem("jwt")}`)
+        // console.log(`читаем токен ${localStorage.getItem("jwt")}`)
         return this._sendRequest(`users/me`, {
             method: 'GET',
             headers: {
@@ -55,7 +55,6 @@ class MainApi {
                 })
         })
         .then((data) => {
-            console.log(data);
             if (data.token) {
                       localStorage.setItem('jwt', data.token)
                       return data.token

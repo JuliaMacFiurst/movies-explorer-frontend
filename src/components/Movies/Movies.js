@@ -31,7 +31,7 @@ export default function Movies({
           checkboxes={checkboxes}
           onCheckboxChange={onCheckboxChange}
           isValid={isValid}
-        />
+        />  
         <MoviesCardList
           movies={movies}
           isLikedMovie={isLikedMovie}
