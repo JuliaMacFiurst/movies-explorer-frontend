@@ -136,9 +136,9 @@ export default function App() {
       if (err.status === 409) {
         setProfileEditResError("Пользователь с таким email уже существует.");
       } else if (err.status === 500) {
-        setProfileEditResError("Ошибка сервера. Повторите попытку позже");
+        setProfileEditResError("Ошибка сервера. Пожалуйста, попробуйте позже.");
       } else {
-        setProfileEditResError("При обновлении профиля произошла ошибка. Пожалуйста, попробуйте позже.");
+        setProfileEditResError("Ошибка валидации email на сервере. Пожалуйста, попробуйте еще раз.");
       }
 
       return (err.message);

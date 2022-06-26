@@ -23,7 +23,7 @@ export default function Profile({
   const newName = useRef("");
   const newEmail = useRef("");
 
-  const { errors, isValid, handleChange, resetForm } = useValidation({
+  const { errors, isValid, handleChange } = useValidation({
     name: newName.current.value,
     email: newEmail.current.value,
   });
@@ -50,8 +50,7 @@ export default function Profile({
       setResFail(result.error);
       setisDisabled(false);
     } else {
-      resetForm({}, {}, true);
-      setisDisabled(false);
+      event.target.reset();
     }
 
     setisDisabled(false);
@@ -95,7 +94,6 @@ export default function Profile({
                 defaultValue={user.name}
               />
               <InputError
-              // className="profile__input-error"
                 isHidden={isValid}
                 name="name"
                 type="input"
@@ -160,16 +158,6 @@ export default function Profile({
                   message={resConfirm}
                 />
                 <div className="profile__button-container">
-                  {errors.profileName && (
-                    <span className="profile__error-field">
-                      {errors.profileName}
-                    </span>
-                  )}
-                  {errors.profileEmail && (
-                    <span className="profile__error-field">
-                      {errors.profileEmail}
-                    </span>
-                  )}
                   {isSuccessSubmit && (
                     <span className="profile__success-field">
                       Ваши данные успешно изменены
