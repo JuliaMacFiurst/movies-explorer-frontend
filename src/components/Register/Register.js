@@ -54,7 +54,6 @@ export default function Register({ onRegister, registerResError }) {
           value={name || ""}
           error={errors.name}
           onChange={handleChange}
-          pattern="[а-яА-Яa-zA-ZЁё\-\s]"
         />
         <InputField
           type="email"

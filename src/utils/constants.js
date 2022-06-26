@@ -9,7 +9,7 @@ export const mainApiUrl = "https://api.movies-explorer.nomoreparties.sbs";
 export const moviesApiUrl = "https://api.nomoreparties.co/beatfilm-movies";
 
 export const validationMessages = {
-  valueRequired: () => "Поле должно быть заполнено.",
+  valueRequired: () => "Нужно ввести ключевое слово.",
   tooShort: ({ minLength }) =>
     `Поле должно содержать минимум ${minLength} символ${
       minLength < 5 ? `а` : `ов`
