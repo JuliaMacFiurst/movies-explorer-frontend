@@ -11,7 +11,7 @@ export default function SearchForm({
     onKeywordChange,
     checkboxes,
     onCheckboxChange,
-    isFormValid 
+    isValid 
 }) {
   
   const onSearchButtonClick = (event) => {
@@ -29,20 +29,20 @@ const onFilterCheckboxClick = (nextCheckboxValue, checkboxName) => {
         <input
           className="search__input"
           id="search-movie"
-          name="movie-title"
+          name="keyword"
           placeholder="Фильм"
           required
           minLength="1"
           maxLength="100"
-          // value={keyword || ''}
-          onChange={(event) => onKeywordChange(event.target)}
+          value={keyword || ''}
+          onChange={onKeywordChange}
         >
         </input>
         <InputError 
         formName="search" 
         name="movie" 
         type="input" 
-        isHidden={isFormValid}
+        isHidden={isValid}
         message={validationMessages.valueRequired()}
          />
         <button 
@@ -51,7 +51,7 @@ const onFilterCheckboxClick = (nextCheckboxValue, checkboxName) => {
         ></button>
       </form>
       <Checkbox 
-      name="short" 
+      name="shortMovies" 
       checkboxText="Короткометражки"
       value={checkboxes["shortMovies-checkbox"]}
       onChange={onFilterCheckboxClick} 

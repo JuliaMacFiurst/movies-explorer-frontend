@@ -3,18 +3,19 @@ import { useState, useCallback } from "react";
 export function useValidation(
   initialState = {
     values: {},
-    isFormValid: true,
+    isValid: true,
   },
   setErrorMessages = {}
 ) {
   const [values, setValues] = useState(initialState.values);
   const [errors, setErrors] = useState({});
-  const [isValid, setIsValid] = useState(initialState.isFormValid);
+  const [isValid, setIsValid] = useState(initialState.isValid);
 
   const handleChange = (evt) => {
     const target = evt.target;
     const name = target.name;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.value;
+    //  === 'checkbox' ? target.checked : target.value;
 
     setValues({
       ...values,

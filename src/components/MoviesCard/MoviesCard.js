@@ -2,16 +2,18 @@ import React from "react";
 
 import "./MoviesCard.css";
 
+import getTrailerUrl from "../../utils/handleTrailerLink";
+
 export default function MoviesCard(props) {
 
-  const { currentMovie, location, onSaveMovie, onRemoveMovie, isMovieLiked } = props;
+  const { currentMovie, location, onSaveMovie, onRemoveMovie, isLikedMovie } = props;
 
     const imageLink = currentMovie?.image?.url ? 'https://api.nomoreparties.co' + currentMovie.image.url : currentMovie.image;
     const thumbnailLink = currentMovie?.image?.formats?.thumbnail?.url ? 'https://api.nomoreparties.co' + currentMovie.image.formats.thumbnail.url : currentMovie.thumbnail;
-    const trailerLink = currentMovie.trailerLink || currentMovie.trailer;
+    const trailerLink = currentMovie.trailerLink || currentMovie.trailerLink;
     const duration = `${Math.trunc(currentMovie.duration / 60)}ч ${currentMovie.duration % 60}м`;
 
-    const likedCard = isMovieLiked?.(currentMovie);
+    const likedCard = isLikedMovie?.(currentMovie);
 
     function handleMovieCardSave() {
       onSaveMovie({
@@ -24,7 +26,7 @@ export default function MoviesCard(props) {
           country: currentMovie.country || 'Неизвестно',
           director: currentMovie.director || 'Неизвестно',
           image: imageLink,
-          trailer: trailerLink,
+          trailerLink: getTrailerUrl(props.currentMovie),
           thumbnail: thumbnailLink,
       });
   }

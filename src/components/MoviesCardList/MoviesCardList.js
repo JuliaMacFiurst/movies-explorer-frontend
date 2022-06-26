@@ -12,7 +12,7 @@ export default function MoviesCardList({
   movies,
   onSaveMovie,
   onRemoveMovie,
-  isMovieLiked,
+  isLikedMovie,
   isDataLoading,
   isNoData,
 }) {
@@ -59,7 +59,7 @@ export default function MoviesCardList({
                   location={pathname}
                   onSaveMovie={onSaveMovie}
                   onRemoveMovie={onRemoveMovie}
-                  isMovieLiked={isMovieLiked}
+                  isLikedMovie={isLikedMovie}
                 />
               );
             })

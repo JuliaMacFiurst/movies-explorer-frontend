@@ -15,8 +15,8 @@ export default function Movies({
   onKeywordChange,
   checkboxes,
   onCheckboxChange,
-  isFormValid,
-  isMovieLiked,
+  isValid,
+  isLikedMovie,
   isDataLoading,
   isNoData,
 }) {
@@ -30,11 +30,11 @@ export default function Movies({
           onKeywordChange={onKeywordChange}
           checkboxes={checkboxes}
           onCheckboxChange={onCheckboxChange}
-          isFormValid={isFormValid}
+          isValid={isValid}
         />
         <MoviesCardList
           movies={movies}
-          isMovieLiked={isMovieLiked}
+          isLikedMovie={isLikedMovie}
           onSaveMovie={onSaveMovie}
           onRemoveMovie={onRemoveMovie}
           isDataLoading={isDataLoading}

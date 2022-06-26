@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./SavedMovies.css";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
@@ -14,7 +14,7 @@ export default function SavedMovies({
     onKeywordChange,
     checkboxes,
     onCheckboxChange,
-    isFormValid,
+    isValid,
     isNoData
 }) {
   
@@ -28,7 +28,7 @@ export default function SavedMovies({
           onKeywordChange={onKeywordChange}
           checkboxes={checkboxes}
           onCheckboxChange={onCheckboxChange}
-          isFormValid={isFormValid}
+          isValid={isValid}
 
         />
         <MoviesCardList 

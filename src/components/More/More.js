@@ -2,10 +2,10 @@ import React from "react";
 
 import "./More.css";
 
-export default function More({ isHidden }) {
+export default function More({ onClick }) {
     return (
-        <section className={`more ${!isHidden && 'more_unvisible'}`}>
-            <button className="more__button" type="button">Ещё</button>
+        <section className={`more`}>
+            <button className="more__button" type="button" onClick={onClick}>Ещё</button>
         </section>
     )
 }
