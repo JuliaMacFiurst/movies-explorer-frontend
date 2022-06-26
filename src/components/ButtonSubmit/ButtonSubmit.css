@@ -12,6 +12,7 @@
   color: #ffffff;
   cursor: pointer;
   transition: opacity 0.3s ease-out;
+  min-width: 260px;
 }
 
 .button-submit:hover {
@@ -30,5 +31,6 @@
     padding: 13px 0 15px;
     font-size: 14px;
     margin-top: 152px;
+    min-width: 396px;
   }
 }

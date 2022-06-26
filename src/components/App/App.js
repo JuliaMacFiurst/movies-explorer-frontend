@@ -138,7 +138,7 @@ export default function App() {
       } else if (err.status === 500) {
         setProfileEditResError("Ошибка сервера. Повторите попытку позже");
       } else {
-        setProfileEditResError("При обновлении профиля произошла ошибка.");
+        setProfileEditResError("При обновлении профиля произошла ошибка. Пожалуйста, попробуйте позже.");
       }
 
       return (err.message);
