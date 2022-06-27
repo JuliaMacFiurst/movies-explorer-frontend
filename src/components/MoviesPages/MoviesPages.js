@@ -125,7 +125,7 @@ export default function MoviesPages() {
         "checkboxes",
         defaultCheckboxValue
       );
-      const localStorageKeyword = getLocalStorageData("keyword", "");
+      const localStorageKeyword = getLocalStorageData("keyword", '');
 
       setSelectedMovies(localStorageMovies);
       setCheckboxes(localStorageCheckbox);
@@ -178,10 +178,10 @@ export default function MoviesPages() {
         searchedMovies = savedMovies;
       }
     }
-    const foundMovies = searchedMovies.filter((movie) =>
-      movie.nameRU.includes(keyword.toLowerCase())
-    );
-
+    const foundMovies = searchedMovies.filter(movie =>
+      movie.nameRU.toLowerCase().includes(keyword.toLowerCase()));
+   
+      
     setSelectedMovies(foundMovies);
     setIsDataloading(false);
 
