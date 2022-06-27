@@ -22,7 +22,7 @@ export default function AuthForm(props) {
           isHidden={error.length === 0}
           message={error}
         />
-        <ButtonSubmit text={buttonText} disabled={!isValid} />
+        <ButtonSubmit text={buttonText} disabled={!isValid || error} />
       </form>
     </div>
   );

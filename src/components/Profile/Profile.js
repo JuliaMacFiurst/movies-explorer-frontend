@@ -174,7 +174,7 @@ export default function Profile({
                   )}
                   <button
                     className="profile__button profile__button_type_submit"
-                    type="submit"
+                    type="button"
                     onClick={(evt) => {
                       evt.preventDefault();
                       setResConfirm("");

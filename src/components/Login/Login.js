@@ -20,10 +20,9 @@ export default function Login({ onLogin, loginResError }) {
 
     if (result === !isValid) {
       setResFail(result.error);
-    } else {
-      resetForm({}, {}, true);
-    }
+    } 
   };
+  
   return (
     <main className="login">
       <AuthForm

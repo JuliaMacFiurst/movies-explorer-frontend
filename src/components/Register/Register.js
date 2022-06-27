@@ -31,10 +31,9 @@ export default function Register({ onRegister, registerResError }) {
 
     if (result === !isValid) {
       setResFail(result.error);
-    } else {
-      resetForm({}, {}, true);
     }
   };
+
   return (
     <main className="register">
       <AuthForm
