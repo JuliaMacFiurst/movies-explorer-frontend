@@ -146,7 +146,11 @@ export default function Profile({
                 <ButtonSubmit
                   text="Сохранить"
                   type="submit"
-                  disabled={!isValid || !isChanged}
+                  disabled={
+                    !isValid ||
+                    (newName.current.value === user.name &&
+                    newEmail.current.value === user.email)
+                  }
                 />
               </>
             ) : (
@@ -170,7 +174,7 @@ export default function Profile({
                   )}
                   <button
                     className="profile__button profile__button_type_submit"
-                    type="button"
+                    type="submit"
                     onClick={(evt) => {
                       evt.preventDefault();
                       setResConfirm("");
