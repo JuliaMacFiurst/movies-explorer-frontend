@@ -19,6 +19,6 @@
 5. Grid Layout
 6. Адаптивная и резиновая верстка
 
-Ссылка на домен [ТУТ](https://movies-explorer.nomoreparties.sbs)
+[Перейти на сайт](https://movies-explorer.nomoredomains.sbs/)
 Публичный IP-адрес сервера: 51.250.71.153
 

@@ -1,32 +1,40 @@
-import { apiOptions } from '../constants';
+import { mainApiUrl } from '../constants';
 
 class MainApi {
     constructor(options) {
       this._url = options.baseUrl;
-      this._headers = options.headers;
     }
   
-    _sendRequest(path, reqOptions) {
-        return fetch(`${this._url}/${path}`, { ...reqOptions, credentials: 'include' })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json()
-                }
-        return Promise.reject(`Ошибка: ${res.status}`);
-        })
-  }
+    async _sendRequest(path, reqOptions) {
+        try {
+            const response = await fetch(`${this._url}/${path}`, { ...reqOptions, credentials: 'include' });
+            if (!response.ok) {
+                throw response;
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            throw error;
+        }
+    }
   
     checkToken() {
+        // console.log(`читаем токен ${localStorage.getItem("jwt")}`)
         return this._sendRequest(`users/me`, {
             method: 'GET',
-            headers: this._headers
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${localStorage.getItem("jwt")}`,
+            }
         })
     }
 
     register({ name, email, password }) {
         return this._sendRequest(`signup`, {
             method: 'POST',
-            headers: this._headers,
+            headers: {
+                "Content-Type": "application/json"
+              },
             body: JSON.stringify({
                 name,
                 email,
@@ -40,25 +48,40 @@ class MainApi {
             method: 'POST',
             headers: {
                     "Content-Type": "application/json",
-                    "Accept": "application/json",
                 },
                 body: JSON.stringify({
                     email,
                     password,
                 })
         })
+        .then((data) => {
+            if (data.token) {
+                      localStorage.setItem('jwt', data.token)
+                      return data.token
+                      
+            }
+        })
     }
+
 
     logout() {
-        return this._sendRequest(`signout`, {})
+        return this._sendRequest(`signout`, {
+            method: 'POST',
+            headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization" : `Bearer ${localStorage.getItem("jwt")}`,
+                },
+                body: JSON.stringify ({messege: "logout"})
+        })
     }
 
-    updateUserInfo({ name, email }) {
+    editUserInfo({ name, email }) {
         return this._sendRequest(`users/me`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json",
+                "Authorization" : `Bearer ${localStorage.getItem("jwt")}`,
             },
             body: JSON.stringify({
                 name,
@@ -67,16 +90,24 @@ class MainApi {
         })
     }
 
+
     getSavedMovies() {
         return this._sendRequest(`movies`, {
             method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${localStorage.getItem("jwt")}`,
+            },
         })
     }
 
     createSavedMovie(movie) {
         return this._sendRequest(`movies`, {
             method: 'POST',
-            headers: this._headers,
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization" : `Bearer ${localStorage.getItem("jwt")}`,
+            },
             body: JSON.stringify(movie),
         })
     }
@@ -84,10 +115,14 @@ class MainApi {
     removeSavedMovie(movieId) {
         return this._sendRequest(`movies/${movieId}`, {
             method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${localStorage.getItem("jwt")}`,
+            },
         })
     }
 }
 
-const mainApi = new MainApi(apiOptions);
+const mainApi = new MainApi({ baseUrl: mainApiUrl });
 
 export default mainApi;

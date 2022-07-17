@@ -4,6 +4,7 @@
   border: none;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .input-field__label {

@@ -11,6 +11,7 @@
   color: #a0a0a0;
   border-bottom: solid 1px #e8e8e8;
   padding-bottom: 21px;
+  padding-top: 80px;
   margin: 0;
 }
 
@@ -101,8 +102,3 @@
   }
 }
 
-@media screen and (min-width: 1200px) {
-  .footer {
-    margin: 0 70px 20px;
-  }
-}

@@ -9,14 +9,12 @@ import "./Navigation.css";
 export default function Navigation() {
     return (
         <nav className="nav">
-            <NavLink exact to="/movies" 
-                className= "nav-link"
-                activeClassName="nav-link_type_active">
+            <NavLink to="/movies" 
+                className= {({ isActive }) => `nav-link ${isActive && 'nav-link_type_active'}`}>
                     Фильмы
             </NavLink>
             <NavLink to="/saved-movies" 
-                className="nav-link"
-                activeClassName="nav-link_type_active">
+                className={({ isActive }) => `nav-link ${isActive && 'nav-link_type_active'}`}>
                     Сохраненные фильмы
             </NavLink>
             <Account />
